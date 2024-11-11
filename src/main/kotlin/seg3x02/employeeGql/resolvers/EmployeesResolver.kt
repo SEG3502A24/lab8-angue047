@@ -26,7 +26,7 @@ class EmployeesResolver (private val employeesRepository: EmployeesRepository,
     }
 
     @MutationMapping
-    fun deleteBook(@Argument("id") id: String) : Boolean {
+    fun deleteEmployee(@Argument("id") id: String) : Boolean {
         employeesRepository.deleteById(id)
         return true
     }
@@ -38,7 +38,7 @@ class EmployeesResolver (private val employeesRepository: EmployeesRepository,
             input.city != null && 
             input.gender != null &&
             input.email != null) {
-            val employee = Employee(input.name,input.dateOfBirth,input.city,input.salary,input.email,input.gender,)
+            val employee = Employee(input.name,input.dateOfBirth,input.city,input.salary,input.gender,input.email)
             employee.id = UUID.randomUUID().toString()
             employeesRepository.save(employee)
             return employee
